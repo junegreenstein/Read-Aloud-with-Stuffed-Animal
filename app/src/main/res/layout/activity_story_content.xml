@@ -25,28 +25,47 @@
         android:layout_below="@+id/text_story_title"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:scrollbars="vertical"
-        android:fadeScrollbars="false"
         android:background="@android:color/background_light"
+        android:fadeScrollbars="false"
         android:gravity="top"
-        android:maxLength="300"
         android:hint="@string/page_content_hint"
         android:importantForAutofill="no"
         android:inputType="textCapSentences|textMultiLine"
+        android:maxLength="300"
+        android:scrollbars="vertical"
         android:textColor="@color/black"
+        android:textCursorDrawable="@drawable/text_cursor"
         android:textSize="18sp" />
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="308dp"
         android:layout_below="@+id/edit_story_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:background="@android:color/background_light"
-        android:gravity="center"
-        android:text="@string/stuffed_animal"
-        android:textColor="@color/black"
-        android:textSize="196sp" />
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_finish"
+            android:layout_width="match_parent"
+            android:layout_height="256dp"
+            android:backgroundTint="@android:color/background_light"
+            android:gravity="center"
+            android:text="@string/stuffed_animal"
+            android:textColor="@color/black"
+            android:textSize="172sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/finish_story"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -60,13 +79,13 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|start"
             android:padding="16dp"
-            android:visibility="invisible"
             android:background="?selectableItemBackgroundBorderless"
             android:src="@drawable/ic_baseline_arrow_back_24"
             app:tint="@color/black"
             tools:ignore="ContentDescription" />
 
         <TextView
+            android:id="@+id/text_page_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"

@@ -1,12 +1,12 @@
 <resources>
     <string name="app_name">Read Aloud with Stuffed Animal</string>
-    <string name="author_name">Group 36</string>
+    <string name="author_name">Write your name here!</string>
+    <string name="invalid_story_content">Invalid story content</string>
+    <string name="invalid_story_title">Invalid story title or author name</string>
     <string name="page_number">1</string>
     <string name="page_content_hint">Write your story!</string>
     <string name="page_content">The quick brown fox jumps over the lazy dog.</string>
     <string name="stuffed_animal">🧸</string>
-
-
-
-
+    <string name="story_title">Write your story title here!</string>
+    <string name="finish_story">Click on me to finish your story!</string>
 </resources>

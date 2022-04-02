@@ -13,27 +13,38 @@
         android:orientation="vertical"
         android:padding="64dp">
 
-        <TextView
+        <EditText
+            android:id="@+id/edit_story_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="casual"
-            android:gravity="center"
-            android:text="@string/app_name"
+            android:background="@color/cardview_light_background"
+            android:maxLength="40"
+            android:gravity="top|center"
+            android:hint="@string/story_title"
             android:textColor="@color/black"
-            android:textSize="36sp" />
+            android:textSize="36sp"
+            android:textCursorDrawable="@drawable/text_cursor"
+            android:autofillHints="no"
+            android:inputType="textCapWords|textMultiLine" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="96dp" />
 
-        <TextView
+        <EditText
+            android:id="@+id/edit_author_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/cardview_light_background"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="@string/author_name"
+            android:hint="@string/author_name"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textCursorDrawable="@drawable/text_cursor"
+            android:autofillHints="no"
+            android:inputType="textCapWords|textMultiLine" />
 
     </LinearLayout>
 
