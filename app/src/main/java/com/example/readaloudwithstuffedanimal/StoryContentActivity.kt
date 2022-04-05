@@ -1,10 +1,14 @@
 package com.example.readaloudwithstuffedanimal
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.core.content.ContextCompat
+import com.google.gson.Gson
+import java.io.File
 
 class StoryContentActivity : AppCompatActivity() {
     // Activity layout views.
@@ -90,7 +94,52 @@ class StoryContentActivity : AppCompatActivity() {
 
         // Finish story button listener.
         btnFinish.setOnClickListener {
-            // TODO: Send story to ReadStoryTitleActivity.
+            // Get story content.
+            val storyContent: String = editStoryContent.text.toString()
+
+            // Ensure story content is not blank.
+            if (storyContent.isNotBlank()) {
+                // Add the page.
+                if (story.size == pageNumber - 1) {
+                    story.add(storyContent.trim())
+                } else {
+                    story[pageNumber - 1] = storyContent.trim()
+                }
+            }
+
+            Log.i("TAG", story.toString())
+
+            // Set unique story ID and write to internal storage.
+            // Create directory.
+            val storyIDs = File(this.filesDir, "storyIDs")
+            storyIDs.mkdirs()
+
+            // Create file if it does not exist.
+            val file = File(storyIDs, "storyIDs.txt")
+            if (!file.exists())
+                file.createNewFile()
+
+            // Set story ID.
+            val lines: List<String> = file.readText().trim().split(" ")
+            val storyID: String = if (lines.isNotEmpty()) {
+                (lines[lines.size - 1].toInt() + 1).toString()
+            } else {
+                "1"
+            }
+
+            // Write to file.
+            file.appendText("$storyID ")
+
+            // Save story title and author name to SharedPreferences.
+            val sharedPreferences = getSharedPreferences(storyID, Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.putString(StoryTitleActivity.STORY_TITLE, storyTitle)
+            editor.putString(StoryTitleActivity.AUTHOR_NAME, authorName)
+
+            // Save story content to SharedPreferences.
+            val gson = Gson()
+            editor.putString(STORY_CONTENT, gson.toJson(story))
+            editor.apply()
         }
     }
 
@@ -117,5 +166,6 @@ class StoryContentActivity : AppCompatActivity() {
 
     companion object {
         const val FIRST_PAGE = 1
+        const val STORY_CONTENT = "STORY_CONTENT"
     }
 }
