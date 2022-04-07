@@ -121,14 +121,19 @@ class StoryContentActivity : AppCompatActivity() {
 
             // Set story ID.
             val lines: List<String> = file.readText().trim().split(" ")
-            val storyID: String = if (lines.isNotEmpty()) {
-                (lines[lines.size - 1].toInt() + 1).toString()
-            } else {
-                "1"
+
+            var storyID = "0"
+
+            // Increment story id.
+            if(lines.size - 1 != 0 || !lines[0].equals("")) {
+
+                storyID = (lines[lines.size - 1].toInt() + 1).toString()
+
             }
 
             // Write to file.
             file.appendText("$storyID ")
+
 
             // Save story title and author name to SharedPreferences.
             val sharedPreferences = getSharedPreferences(storyID, Context.MODE_PRIVATE)
