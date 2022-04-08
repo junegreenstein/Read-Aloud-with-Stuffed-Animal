@@ -10,4 +10,5 @@
     <string name="story_title">Write your story title here!</string>
     <string name="finish_story">Click on me to finish your story!</string>
     <string name="fab">fab</string>
+    <string name="saved_stories">Saved Stories</string>
 </resources>
