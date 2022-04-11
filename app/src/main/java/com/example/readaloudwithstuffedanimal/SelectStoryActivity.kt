@@ -38,13 +38,12 @@ class SelectStoryActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // TODO: Populate recycler view with saved stories from SharedPreferences.
-
         // Get story id file
         val storyIDs = File(this.filesDir, "storyIDs")
 
         val titles: MutableList<String> = mutableListOf()
         val authors: MutableList<String> = mutableListOf()
+        val ids: MutableList<String> = mutableListOf()
 
         val file = File(storyIDs, "storyIDs.txt")
         // Get story ids to populate old stories if the file exists (i.e. an old story has been made before)
@@ -58,6 +57,7 @@ class SelectStoryActivity : AppCompatActivity() {
                 if (sharedPrefs.contains(StoryTitleActivity.AUTHOR_NAME)) {
                     authors.add(sharedPrefs.getString(StoryTitleActivity.AUTHOR_NAME, "")!!)
                 }
+                ids.add(id)
             }
         }
 
@@ -67,11 +67,14 @@ class SelectStoryActivity : AppCompatActivity() {
             inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 val title: TextView = itemView.findViewById(R.id.storyItemTitle)
                 val author: TextView = itemView.findViewById(R.id.storyItemAuthor)
+                var id: String? = null
 
                 init {
                     itemView.setOnClickListener { view: View ->
-                        // TODO: Go to reading story activity
-                        Toast.makeText(view.context, title.text, Toast.LENGTH_SHORT).show()
+                        intent = Intent(this@SelectStoryActivity, ReadStoryTitleActivity::class.java)
+                        intent.putExtra(StoryTitleActivity.STORY_TITLE, title.text)
+                        intent.putExtra("id", id)
+                        startActivity(intent)
                     }
                 }
             }
@@ -85,6 +88,7 @@ class SelectStoryActivity : AppCompatActivity() {
             override fun onBindViewHolder(holder: ViewHolder, position: Int) {
                 holder.title.text = titles[position]
                 holder.author.text = authors[position]
+                holder.id = ids[position]
             }
 
             override fun getItemCount(): Int {
