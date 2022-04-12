@@ -1,6 +1,7 @@
 package com.example.readaloudwithstuffedanimal
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -20,7 +21,6 @@ class StoryContentActivity : AppCompatActivity() {
     // Page number.
     private var pageNumber: Int = 0
 
-    // TODO: Create Story singleton class so that this data is accessible between Activities.
     // Story array.
     private val story = ArrayList<String>()
 
@@ -145,6 +145,10 @@ class StoryContentActivity : AppCompatActivity() {
             val gson = Gson()
             editor.putString(STORY_CONTENT, gson.toJson(story))
             editor.apply()
+
+            val intent = Intent(this, ReadStoryTitleActivity::class.java)
+            intent.putExtra(STORY_ID, storyID)
+            startActivity(intent)
         }
     }
 
@@ -172,5 +176,6 @@ class StoryContentActivity : AppCompatActivity() {
     companion object {
         const val FIRST_PAGE = 1
         const val STORY_CONTENT = "STORY_CONTENT"
+        const val STORY_ID = "STORY_ID"
     }
 }
