@@ -48,12 +48,12 @@
         <Button
             android:id="@+id/btn_finish"
             android:layout_width="match_parent"
-            android:layout_height="256dp"
+            android:layout_height="wrap_content"
             android:backgroundTint="@android:color/background_light"
             android:gravity="center"
             android:text="@string/stuffed_animal"
             android:textColor="@color/black"
-            android:textSize="172sp" />
+            android:textSize="140sp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -63,9 +63,8 @@
             android:text="@string/finish_story"
             android:textSize="18sp" />
 
+
     </LinearLayout>
-
-
 
     <FrameLayout
         android:layout_width="match_parent"

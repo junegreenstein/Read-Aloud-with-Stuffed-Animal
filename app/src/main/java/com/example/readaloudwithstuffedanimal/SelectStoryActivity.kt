@@ -73,7 +73,7 @@ class SelectStoryActivity : AppCompatActivity() {
                     itemView.setOnClickListener { view: View ->
                         intent = Intent(this@SelectStoryActivity, ReadStoryTitleActivity::class.java)
                         intent.putExtra(StoryTitleActivity.STORY_TITLE, title.text)
-                        intent.putExtra("id", id)
+                        intent.putExtra(StoryContentActivity.STORY_ID, id)
                         startActivity(intent)
                     }
                 }
