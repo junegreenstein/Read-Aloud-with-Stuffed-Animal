@@ -9,23 +9,22 @@ import java.io.File
 
 class ReadStoryTitleActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private var textToSpeech: TextToSpeech? = null
-    private var readText: EditText? = null
+    private var readText: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_read_story_title)
 
        textToSpeech = TextToSpeech(this, this)
-        val sp = getPreferences(Context.MODE_PRIVATE)
+        val id = intent.getStringExtra(StoryContentActivity.STORY_ID)
+        val sp = getSharedPreferences(id, Context.MODE_PRIVATE)
         val title = sp.getString(StoryTitleActivity.STORY_TITLE, null)
         val author = sp.getString(StoryTitleActivity.AUTHOR_NAME, null)
-        val ta = title + author
-        readText!!.setText(ta)
+        readText = title + author
     }
 
-    private fun read(text: EditText?) {
-        val text = readText!!.text
-        textToSpeech!!.speak(text, TextToSpeech.QUEUE_ADD, null,"")
+    private fun read(text: String?) {
+        textToSpeech!!.speak(readText, TextToSpeech.QUEUE_ADD, null,"")
     }
 
     override fun onInit(status: Int) {
