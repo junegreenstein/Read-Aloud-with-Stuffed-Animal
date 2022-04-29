@@ -14,12 +14,11 @@
         android:layout_centerHorizontal="true"
         android:fontFamily="casual"
         android:padding="16dp"
-        android:text="@string/app_name"
         android:textColor="@color/black"
         android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/edit_story_content"
+        android:id="@+id/text_story_content"
         android:layout_width="match_parent"
         android:layout_height="308dp"
         android:layout_below="@+id/text_story_title"
@@ -28,14 +27,13 @@
         android:layout_marginEnd="16dp"
         android:background="@android:color/background_light"
         android:gravity="top"
-        android:text="@string/page_content"
         android:textColor="@color/black"
         android:textSize="18sp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="308dp"
-        android:layout_below="@+id/edit_story_content"
+        android:layout_below="@+id/text_story_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:background="@android:color/background_light"

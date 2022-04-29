@@ -21,8 +21,8 @@ class ReadStoryTitleActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
         setContentView(R.layout.activity_read_story_title)
 
         val btnNext: ImageButton = findViewById(R.id.btn_next)
-        val StoryTitle: TextView = findViewById(R.id.read_story_title)
-        val AuthorName: TextView  = findViewById(R.id.read_author_name)
+        val storyTitle: TextView = findViewById(R.id.read_story_title)
+        val authorName: TextView  = findViewById(R.id.read_author_name)
 
        textToSpeech = TextToSpeech(this, this)
         val id = intent.getStringExtra(StoryContentActivity.STORY_ID)
@@ -31,8 +31,8 @@ class ReadStoryTitleActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
         val author = sp.getString(StoryTitleActivity.AUTHOR_NAME, null)
         readText = title + author
 
-        StoryTitle.text = title
-        AuthorName.text = author
+        storyTitle.text = title
+        authorName.text = author
 
         btnNext.setOnClickListener {
             val intent = Intent(this, ReadStoryContentActivity::class.java)
