@@ -1,9 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ReadStoryTitleActivity">
+    android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:padding="64dp">
+
+        <TextView
+            android:id="@+id/read_story_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="casual"
+            android:background="@color/cardview_light_background"
+            android:maxLength="40"
+            android:gravity="top|center"
+            android:textColor="@color/black"
+            android:textSize="36sp"
+            android:textCursorDrawable="@drawable/text_cursor"
+            android:inputType="textCapWords|textMultiLine" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="96dp" />
+
+        <TextView
+            android:id="@+id/read_author_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/cardview_light_background"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textCursorDrawable="@drawable/text_cursor"
+            android:inputType="textCapWords|textMultiLine" />
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/btn_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:padding="16dp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_baseline_arrow_forward_24"
+        app:tint="@color/black"
+        tools:ignore="ContentDescription" />
+
+</RelativeLayout>
