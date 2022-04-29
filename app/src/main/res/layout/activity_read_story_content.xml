@@ -42,39 +42,45 @@
         android:textColor="@color/black"
         android:textSize="196sp" />
 
-    <ImageButton
-        android:id="@+id/btn_previous"
-        android:layout_width="wrap_content"
+    <FrameLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:padding="16dp"
-        android:visibility="invisible"
-        android:background="?selectableItemBackgroundBorderless"
-        android:src="@drawable/ic_baseline_arrow_back_24"
-        app:tint="@color/black"
-        tools:ignore="ContentDescription" />
+        android:background="@color/cardview_light_background">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:padding="16dp"
-        android:text="@string/page_number"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        tools:ignore="RelativeOverlap" />
+        <ImageButton
+            android:id="@+id/btn_previous"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|start"
+            android:padding="16dp"
+            android:background="?selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            app:tint="@color/black"
+            tools:ignore="ContentDescription" />
 
-    <ImageButton
-        android:id="@+id/btn_next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:padding="16dp"
-        android:background="?selectableItemBackgroundBorderless"
-        android:src="@drawable/ic_baseline_arrow_forward_24"
-        app:tint="@color/black"
-        tools:ignore="ContentDescription" />
+        <TextView
+            android:id="@+id/text_page_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:padding="16dp"
+            android:text="@string/page_number"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            tools:ignore="RelativeOverlap" />
+
+        <ImageButton
+            android:id="@+id/btn_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:padding="16dp"
+            android:background="?selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_baseline_arrow_forward_24"
+            app:tint="@color/black"
+            tools:ignore="ContentDescription" />
+
+    </FrameLayout>
 
 </RelativeLayout>
