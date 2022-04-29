@@ -36,6 +36,8 @@ class ReadStoryTitleActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
 
         btnNext.setOnClickListener {
             val intent = Intent(this, ReadStoryContentActivity::class.java)
+            intent.putExtra(StoryTitleActivity.STORY_TITLE, title)
+            intent.putExtra(StoryContentActivity.STORY_ID, id)
             startActivity(intent)
         }
     }
