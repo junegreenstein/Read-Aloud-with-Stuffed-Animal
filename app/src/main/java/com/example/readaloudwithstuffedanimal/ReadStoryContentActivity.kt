@@ -10,6 +10,15 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import android.content.Intent
+import android.preference.PreferenceManager
+import android.util.Log
+import android.widget.*
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import java.io.File
+import java.lang.reflect.Type
+import java.util.ArrayList
 
 class ReadStoryContentActivity : AppCompatActivity(),TextToSpeech.OnInitListener {
     private var textToSpeech: TextToSpeech? = null
@@ -41,7 +50,14 @@ class ReadStoryContentActivity : AppCompatActivity(),TextToSpeech.OnInitListener
         val id = intent.getStringExtra(StoryContentActivity.STORY_ID)
         val sp = getSharedPreferences(id, Context.MODE_PRIVATE)
         val title = sp.getString(StoryTitleActivity.STORY_TITLE, null)
-        content = sp.getString(StoryContentActivity.STORY_CONTENT, null) as ArrayList<String>
+
+        val emptyList = Gson().toJson(ArrayList<String>())
+        val key: String? = sp.getString(StoryContentActivity.STORY_CONTENT, null)
+        val gson = Gson()
+       // val json: String? = sp.getString(key, null)
+        val type: Type = object : TypeToken<ArrayList<String?>?>() {}.type
+        content = gson.fromJson(key, type)
+
         //readText = content
 
         storyTitle.text = title
