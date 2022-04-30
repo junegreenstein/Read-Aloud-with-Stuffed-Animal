@@ -18,6 +18,9 @@ import com.google.gson.Gson
 import java.io.File
 
 class SelectStoryActivity : AppCompatActivity() {
+
+    lateinit var storyList : RecyclerView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_story)
@@ -30,13 +33,17 @@ class SelectStoryActivity : AppCompatActivity() {
 
         // Activity layout views.
         val fab: FloatingActionButton = findViewById(R.id.fab)
-        val storyList: RecyclerView = findViewById(R.id.storyList)
+        storyList = findViewById(R.id.storyList)
 
         // Floating action button listener.
         fab.setOnClickListener {
             val intent = Intent(this, StoryTitleActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
 
         // Get story id file
         val storyIDs = File(this.filesDir, "storyIDs")
