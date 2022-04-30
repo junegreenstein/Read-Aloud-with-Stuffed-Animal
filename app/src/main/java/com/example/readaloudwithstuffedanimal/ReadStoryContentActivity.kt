@@ -5,18 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.view.View
-import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.content.ContextCompat
-import android.content.Intent
-import android.preference.PreferenceManager
-import android.util.Log
-import android.widget.*
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import java.io.File
 import java.lang.reflect.Type
 import java.util.ArrayList
 
@@ -50,39 +43,31 @@ class ReadStoryContentActivity : AppCompatActivity(),TextToSpeech.OnInitListener
         val id = intent.getStringExtra(StoryContentActivity.STORY_ID)
         val sp = getSharedPreferences(id, Context.MODE_PRIVATE)
         val title = sp.getString(StoryTitleActivity.STORY_TITLE, null)
-
-        val emptyList = Gson().toJson(ArrayList<String>())
-        val key: String? = sp.getString(StoryContentActivity.STORY_CONTENT, null)
+        val json: String? = sp.getString(StoryContentActivity.STORY_CONTENT, null)
         val gson = Gson()
-       // val json: String? = sp.getString(key, null)
         val type: Type = object : TypeToken<ArrayList<String?>?>() {}.type
-        content = gson.fromJson(key, type)
-
-        //readText = content
-
+        content = gson.fromJson(json, type)
         storyTitle.text = title
-        //storyContent.text = content
+
 
         updatePage(true)
 
         btnNext.setOnClickListener {
-            //storyContent.text = content
             updatePage(true)
         }
 
         btnPrevious.setOnClickListener {
-            //storyContent.text = content
             updatePage(false)
         }
     }
 
-    private fun read(text: String?) {
+    private fun read() {
         textToSpeech!!.speak(readText, TextToSpeech.QUEUE_ADD, null,"")
     }
 
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
-            read(readText)
+            read()
         }
     }
 
@@ -95,14 +80,30 @@ class ReadStoryContentActivity : AppCompatActivity(),TextToSpeech.OnInitListener
 
         textPageNumber.text = pageNumber.toString()
 
-        storyContent.text = content[pageNumber - 1]
-
-        readText = content[pageNumber - 1]
-
-        if (pageNumber == StoryContentActivity.FIRST_PAGE) {
-            btnPrevious.visibility = View.GONE
+        if (pageNumber == content.size) {
+            storyContent.text = content[pageNumber - 1]
+            readText = content[pageNumber - 1] + " The End "
         } else {
-            btnPrevious.visibility = View.VISIBLE
+            storyContent.text = content[pageNumber - 1]
+            readText = content[pageNumber - 1]
+        }
+
+        textToSpeech = TextToSpeech(this, this)
+
+
+        when (pageNumber) {
+            StoryContentActivity.FIRST_PAGE -> {
+                btnPrevious.visibility = View.GONE
+                btnNext.visibility = View.VISIBLE
+            }
+            content.size -> {
+                btnPrevious.visibility = View.VISIBLE
+                btnNext.visibility = View.GONE
+            }
+            else -> {
+                btnPrevious.visibility = View.VISIBLE
+                btnNext.visibility = View.VISIBLE
+            }
         }
     }
 }

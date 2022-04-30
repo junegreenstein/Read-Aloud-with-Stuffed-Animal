@@ -4,13 +4,9 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
-import android.widget.EditText
 import android.widget.ImageButton
-import java.io.File
 import android.widget.TextView
 import android.content.Intent
-import android.widget.Toast
-import androidx.core.content.ContextCompat
 
 class ReadStoryTitleActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private var textToSpeech: TextToSpeech? = null
@@ -29,8 +25,9 @@ class ReadStoryTitleActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
         val sp = getSharedPreferences(id, Context.MODE_PRIVATE)
         val title = sp.getString(StoryTitleActivity.STORY_TITLE, null)
         val author = sp.getString(StoryTitleActivity.AUTHOR_NAME, null)
-        readText = title + author
-
+        val preStoryTitle = " The title of the story is "
+        val preStoryAuthor = " Written By "
+        readText = preStoryTitle + title + preStoryAuthor + author
         storyTitle.text = title
         authorName.text = author
 
@@ -42,13 +39,13 @@ class ReadStoryTitleActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
         }
     }
 
-    private fun read(text: String?) {
+    private fun read() {
         textToSpeech!!.speak(readText, TextToSpeech.QUEUE_ADD, null,"")
     }
 
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
-            read(readText)
+            read()
         }
     }
 }
