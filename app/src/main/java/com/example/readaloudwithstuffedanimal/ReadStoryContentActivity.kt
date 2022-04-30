@@ -18,7 +18,7 @@ class ReadStoryContentActivity : AppCompatActivity(),TextToSpeech.OnInitListener
     private lateinit var btnPrevious: ImageButton
     private lateinit var textPageNumber: TextView
     private lateinit var storyContent: TextView
-    private var content: String? = null
+    private lateinit var content: ArrayList<String>
     private var pageNumber: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,8 +41,8 @@ class ReadStoryContentActivity : AppCompatActivity(),TextToSpeech.OnInitListener
         val id = intent.getStringExtra(StoryContentActivity.STORY_ID)
         val sp = getSharedPreferences(id, Context.MODE_PRIVATE)
         val title = sp.getString(StoryTitleActivity.STORY_TITLE, null)
-        content = sp.getString(StoryContentActivity.STORY_CONTENT, null)
-        readText = content
+        content = sp.getString(StoryContentActivity.STORY_CONTENT, null) as ArrayList<String>
+        //readText = content
 
         storyTitle.text = title
         //storyContent.text = content
@@ -50,12 +50,12 @@ class ReadStoryContentActivity : AppCompatActivity(),TextToSpeech.OnInitListener
         updatePage(true)
 
         btnNext.setOnClickListener {
-            storyContent.text = content
+            //storyContent.text = content
             updatePage(true)
         }
 
         btnPrevious.setOnClickListener {
-            storyContent.text = content
+            //storyContent.text = content
             updatePage(false)
         }
     }
@@ -79,7 +79,9 @@ class ReadStoryContentActivity : AppCompatActivity(),TextToSpeech.OnInitListener
 
         textPageNumber.text = pageNumber.toString()
 
-        storyContent.text = content
+        storyContent.text = content[pageNumber - 1]
+
+        readText = content[pageNumber - 1]
 
         if (pageNumber == StoryContentActivity.FIRST_PAGE) {
             btnPrevious.visibility = View.GONE
