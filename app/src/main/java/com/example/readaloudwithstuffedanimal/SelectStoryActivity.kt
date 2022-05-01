@@ -4,22 +4,19 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.gson.Gson
 import java.io.File
 
 class SelectStoryActivity : AppCompatActivity() {
 
-    lateinit var storyList : RecyclerView
+    private lateinit var storyList : RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,7 +74,7 @@ class SelectStoryActivity : AppCompatActivity() {
                 var id: String? = null
 
                 init {
-                    itemView.setOnClickListener { view: View ->
+                    itemView.setOnClickListener {
                         intent = Intent(this@SelectStoryActivity, ReadStoryTitleActivity::class.java)
                         intent.putExtra(StoryTitleActivity.STORY_TITLE, title.text)
                         intent.putExtra(StoryContentActivity.STORY_ID, id)
