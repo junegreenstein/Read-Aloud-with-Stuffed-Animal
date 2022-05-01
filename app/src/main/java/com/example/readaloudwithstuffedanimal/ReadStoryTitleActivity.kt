@@ -24,7 +24,7 @@ class ReadStoryTitleActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
         // Initialize TextToSpeech class variable.
        textToSpeech = TextToSpeech(this, this)
 
-        // Get story title and author from SharedPreferences.
+        // Get title and author from SharedPreferences.
         val id = intent.getStringExtra(StoryContentActivity.STORY_ID)
         val sp = getSharedPreferences(id, Context.MODE_PRIVATE)
         val title = sp.getString(StoryTitleActivity.STORY_TITLE, null)
@@ -59,7 +59,7 @@ class ReadStoryTitleActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
         }
     }
 
-    // Function that reads out the text.
+    // Read out the text.
     private fun read() {
         textToSpeech!!.speak(readText, TextToSpeech.QUEUE_ADD, null,"")
     }
