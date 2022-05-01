@@ -49,7 +49,6 @@ class ReadStoryContentActivity : AppCompatActivity(),TextToSpeech.OnInitListener
         content = gson.fromJson(json, type)
         storyTitle.text = title
 
-
         updatePage(true)
 
         btnNext.setOnClickListener {
@@ -90,20 +89,18 @@ class ReadStoryContentActivity : AppCompatActivity(),TextToSpeech.OnInitListener
 
         textToSpeech = TextToSpeech(this, this)
 
-
-        when (pageNumber) {
-            StoryContentActivity.FIRST_PAGE -> {
-                btnPrevious.visibility = View.GONE
-                btnNext.visibility = View.VISIBLE
-            }
-            content.size -> {
-                btnPrevious.visibility = View.VISIBLE
-                btnNext.visibility = View.GONE
-            }
-            else -> {
-                btnPrevious.visibility = View.VISIBLE
-                btnNext.visibility = View.VISIBLE
-            }
+        if (pageNumber == StoryContentActivity.FIRST_PAGE && content.size == 1) {
+            btnPrevious.visibility = View.GONE
+            btnNext.visibility = View.GONE
+        } else if (pageNumber == StoryContentActivity.FIRST_PAGE) {
+            btnPrevious.visibility = View.GONE
+            btnNext.visibility = View.VISIBLE
+        } else if (pageNumber == content.size) {
+            btnPrevious.visibility = View.VISIBLE
+            btnNext.visibility = View.GONE
+        } else {
+            btnPrevious.visibility = View.VISIBLE
+            btnNext.visibility = View.VISIBLE
         }
     }
 }

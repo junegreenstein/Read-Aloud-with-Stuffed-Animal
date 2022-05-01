@@ -40,7 +40,7 @@
         android:gravity="center"
         android:text="@string/stuffed_animal"
         android:textColor="@color/black"
-        android:textSize="196sp" />
+        android:textSize="150sp" />
 
     <FrameLayout
         android:layout_width="match_parent"
