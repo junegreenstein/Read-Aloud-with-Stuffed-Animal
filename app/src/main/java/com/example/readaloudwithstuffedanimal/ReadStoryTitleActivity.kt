@@ -61,7 +61,7 @@ class ReadStoryTitleActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
 
     // Read out the text.
     private fun read() {
-        textToSpeech!!.speak(readText, TextToSpeech.QUEUE_ADD, null,"")
+        textToSpeech!!.speak(readText, TextToSpeech.QUEUE_FLUSH, null,"UNIQUE_UTTERANCE_ID")
     }
 
     // Stop and shutdown TextToSpeech engine when activity is destroyed.

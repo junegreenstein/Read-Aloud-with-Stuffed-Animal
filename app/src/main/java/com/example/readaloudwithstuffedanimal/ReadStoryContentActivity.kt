@@ -81,7 +81,7 @@ class ReadStoryContentActivity : AppCompatActivity(),TextToSpeech.OnInitListener
 
     // Read out the text.
     private fun read() {
-        textToSpeech!!.speak(readText, TextToSpeech.QUEUE_ADD, null,"")
+        textToSpeech!!.speak(readText, TextToSpeech.QUEUE_FLUSH, null,"")
     }
 
     // Manage what is displayed on each page.
