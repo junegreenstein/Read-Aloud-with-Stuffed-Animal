@@ -2,12 +2,12 @@ package com.example.readaloudwithstuffedanimal
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,7 +16,7 @@ import java.io.File
 
 class SelectStoryActivity : AppCompatActivity() {
 
-    private lateinit var storyList : RecyclerView
+    private lateinit var storyList: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,7 +75,8 @@ class SelectStoryActivity : AppCompatActivity() {
 
                 init {
                     itemView.setOnClickListener {
-                        intent = Intent(this@SelectStoryActivity, ReadStoryTitleActivity::class.java)
+                        intent =
+                            Intent(this@SelectStoryActivity, ReadStoryTitleActivity::class.java)
                         intent.putExtra(StoryTitleActivity.STORY_TITLE, title.text)
                         intent.putExtra(StoryContentActivity.STORY_ID, id)
                         startActivity(intent)
@@ -84,7 +85,8 @@ class SelectStoryActivity : AppCompatActivity() {
             }
 
             override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-                val itemView = LayoutInflater.from(parent.context).inflate(R.layout.story_item, parent, false)
+                val itemView =
+                    LayoutInflater.from(parent.context).inflate(R.layout.story_item, parent, false)
 
                 return ViewHolder(itemView)
             }

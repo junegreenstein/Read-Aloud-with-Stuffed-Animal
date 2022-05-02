@@ -2,11 +2,11 @@ package com.example.readaloudwithstuffedanimal
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.gson.Gson
 import java.io.File
@@ -125,7 +125,7 @@ class StoryContentActivity : AppCompatActivity() {
             var storyID = "0"
 
             // Increment story id.
-            if(lines.size - 1 != 0 || !lines[0].equals("")) {
+            if (lines.size - 1 != 0 || !lines[0].equals("")) {
 
                 storyID = (lines[lines.size - 1].toInt() + 1).toString()
 

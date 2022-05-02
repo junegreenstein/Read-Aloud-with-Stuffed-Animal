@@ -1,12 +1,12 @@
 package com.example.readaloudwithstuffedanimal
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.widget.ImageButton
 import android.widget.TextView
-import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 
 class ReadStoryTitleActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private var textToSpeech: TextToSpeech? = null
@@ -19,10 +19,10 @@ class ReadStoryTitleActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
         // Activity layout views.
         val btnNext: ImageButton = findViewById(R.id.btn_next)
         val storyTitle: TextView = findViewById(R.id.read_story_title)
-        val authorName: TextView  = findViewById(R.id.read_author_name)
+        val authorName: TextView = findViewById(R.id.read_author_name)
 
         // Initialize TextToSpeech class variable.
-       textToSpeech = TextToSpeech(this, this)
+        textToSpeech = TextToSpeech(this, this)
 
         // Get title and author from SharedPreferences.
         val id = intent.getStringExtra(StoryContentActivity.STORY_ID)
@@ -61,7 +61,7 @@ class ReadStoryTitleActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
 
     // Read out the text.
     private fun read() {
-        textToSpeech!!.speak(readText, TextToSpeech.QUEUE_FLUSH, null,"UNIQUE_UTTERANCE_ID")
+        textToSpeech!!.speak(readText, TextToSpeech.QUEUE_FLUSH, null, "UNIQUE_UTTERANCE_ID")
     }
 
     // Stop and shutdown TextToSpeech engine when activity is destroyed.

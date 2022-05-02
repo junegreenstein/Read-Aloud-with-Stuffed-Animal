@@ -1,11 +1,11 @@
 package com.example.readaloudwithstuffedanimal
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 
 class StoryTitleActivity : AppCompatActivity() {

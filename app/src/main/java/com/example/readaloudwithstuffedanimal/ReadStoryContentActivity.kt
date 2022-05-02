@@ -1,19 +1,18 @@
 package com.example.readaloudwithstuffedanimal
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.view.View
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
-import java.util.ArrayList
 
-class ReadStoryContentActivity : AppCompatActivity(),TextToSpeech.OnInitListener {
+class ReadStoryContentActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private var textToSpeech: TextToSpeech? = null
     private var readText: String? = null
     private lateinit var btnNext: ImageButton
@@ -81,7 +80,7 @@ class ReadStoryContentActivity : AppCompatActivity(),TextToSpeech.OnInitListener
 
     // Read out the text.
     private fun read() {
-        textToSpeech!!.speak(readText, TextToSpeech.QUEUE_FLUSH, null,"")
+        textToSpeech!!.speak(readText, TextToSpeech.QUEUE_FLUSH, null, "")
     }
 
     // Manage what is displayed on each page.
