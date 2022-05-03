@@ -1,10 +1,12 @@
 package com.example.readaloudwithstuffedanimal
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.speech.tts.Voice
 import android.view.View
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +22,7 @@ class ReadStoryContentActivity : AppCompatActivity(), TextToSpeech.OnInitListene
     private var readText: String? = null
     private lateinit var btnNext: ImageButton
     private lateinit var btnPrevious: ImageButton
+    private lateinit var btnTheEnd: Button
     private lateinit var textPageNumber: TextView
     private lateinit var storyContent: TextView
     private lateinit var content: ArrayList<String>
@@ -38,6 +41,7 @@ class ReadStoryContentActivity : AppCompatActivity(), TextToSpeech.OnInitListene
         // Activity layout views.
         btnNext = findViewById(R.id.btn_next)
         btnPrevious = findViewById(R.id.btn_previous)
+        btnTheEnd = findViewById(R.id.btn_the_end) as Button
         textPageNumber = findViewById(R.id.text_page_number)
         val storyTitle: TextView = findViewById(R.id.text_story_title)
         storyContent = findViewById(R.id.text_story_content)
@@ -70,6 +74,12 @@ class ReadStoryContentActivity : AppCompatActivity(), TextToSpeech.OnInitListene
         btnPrevious.setOnClickListener {
             // Update the next page.
             updatePage(false)
+        }
+
+        btnTheEnd.setOnClickListener {
+            val intent = Intent(this, SelectStoryActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
         }
     }
 
@@ -122,15 +132,19 @@ class ReadStoryContentActivity : AppCompatActivity(), TextToSpeech.OnInitListene
         if (pageNumber == StoryContentActivity.FIRST_PAGE && content.size == 1) {
             btnPrevious.visibility = View.GONE
             btnNext.visibility = View.GONE
+            btnTheEnd.visibility = View.VISIBLE
         } else if (pageNumber == StoryContentActivity.FIRST_PAGE) {
             btnPrevious.visibility = View.GONE
             btnNext.visibility = View.VISIBLE
+            btnTheEnd.visibility = View.GONE
         } else if (pageNumber == content.size) {
             btnPrevious.visibility = View.VISIBLE
             btnNext.visibility = View.GONE
+            btnTheEnd.visibility = View.VISIBLE
         } else {
             btnPrevious.visibility = View.VISIBLE
             btnNext.visibility = View.VISIBLE
+            btnTheEnd.visibility = View.GONE
         }
     }
 

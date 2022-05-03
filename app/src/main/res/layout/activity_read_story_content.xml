@@ -80,17 +80,14 @@
             app:tint="@color/black"
             tools:ignore="ContentDescription" />
 
-        <ImageButton
+        <Button
             android:id="@+id/btn_the_end"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:background="?selectableItemBackgroundBorderless"
-            android:contentDescription="@string/the_end"
-            android:padding="16dp"
-            android:src="@drawable/ic_baseline_arrow_forward_24"
-            app:tint="@color/black"
-            tools:ignore="ContentDescription" />
+            android:layout_gravity="bottom|right"
+            android:text="@string/the_end"
+            android:textColor="#000000" />
 
     </FrameLayout>
 
