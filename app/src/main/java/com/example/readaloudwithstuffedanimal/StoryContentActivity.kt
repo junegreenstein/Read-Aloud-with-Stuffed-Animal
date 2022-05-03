@@ -146,7 +146,7 @@ class StoryContentActivity : AppCompatActivity() {
             editor.putString(STORY_CONTENT, gson.toJson(story))
             editor.apply()
 
-            val intent = Intent(this, ReadStoryTitleActivity::class.java)
+            val intent = Intent(this, DrawPictureActivity::class.java)
             intent.putExtra(STORY_ID, storyID)
             startActivity(intent)
         }

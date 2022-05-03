@@ -4,10 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/drawTitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/story_draw_cover"
+        android:textSize="20sp" />
+
     <RelativeLayout
         android:id="@+id/toolbar"
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/drawTitleText"
         android:background="@color/grey">
 
         <LinearLayout
@@ -100,9 +109,9 @@
             android:layout_below="@id/colorPickerLayout"
             android:layout_centerHorizontal="true"
             android:layout_marginVertical="5dp"
+            android:max="1000"
             android:min="40"
-            android:max="700"
-            android:progress="70"/>
+            android:progress="80" />
     </RelativeLayout>
 
     <RelativeLayout

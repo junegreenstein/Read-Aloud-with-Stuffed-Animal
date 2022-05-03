@@ -1,14 +1,25 @@
 package com.example.readaloudwithstuffedanimal
 
+import android.content.ContentUris
+import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
+import android.provider.MediaStore
 import android.speech.tts.TextToSpeech
 import android.speech.tts.Voice
 import android.util.Log
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import java.io.File
+import java.io.FileInputStream
+import java.io.InputStream
 import java.util.*
 
 class ReadStoryTitleActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
@@ -23,6 +34,7 @@ class ReadStoryTitleActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
         val btnNext: ImageButton = findViewById(R.id.btn_next)
         val storyTitle: TextView = findViewById(R.id.read_story_title)
         val authorName: TextView = findViewById(R.id.read_author_name)
+        val coverArt: ImageView = findViewById(R.id.coverArtImage)
 
         // Initialize TextToSpeech class variable.
         textToSpeech = TextToSpeech(this, this, "com.google.android.tts")
@@ -32,6 +44,20 @@ class ReadStoryTitleActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
         val sp = getSharedPreferences(id, Context.MODE_PRIVATE)
         val title = sp.getString(StoryTitleActivity.STORY_TITLE, null)
         val author = sp.getString(StoryTitleActivity.AUTHOR_NAME, null)
+
+        // Get cover art
+        val path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).absolutePath
+        val myPath = path + "/" + id + "_cover.png"
+        val coverFile = File(myPath)
+
+        if (coverFile.exists()) {
+            val imageInStream = FileInputStream(coverFile)
+            val bitmap = BitmapFactory.decodeStream(imageInStream)
+            coverArt.setImageBitmap(bitmap)
+        }
+        else {
+            Toast.makeText(this, "Cover not found", Toast.LENGTH_SHORT).show()
+        }
 
         // Display title and author in layout.
         storyTitle.text = title
@@ -88,5 +114,11 @@ class ReadStoryTitleActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
             textToSpeech!!.shutdown()
         }
         super.onDestroy()
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, SelectStoryActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
     }
 }

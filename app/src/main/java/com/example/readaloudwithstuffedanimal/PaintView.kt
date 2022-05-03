@@ -21,7 +21,7 @@ class PaintView : View {
         var strokeList = ArrayList<Float>()
 
         var currentColor = Color.BLACK
-        var currentStroke = 4f
+        var currentStroke = 8f
 
         lateinit var bitmap : Bitmap
         lateinit var bitmapCanvas : Canvas
@@ -50,6 +50,14 @@ class PaintView : View {
         paintBrush.style = Paint.Style.STROKE
         paintBrush.strokeJoin = Paint.Join.ROUND
         paintBrush.strokeCap = Paint.Cap.ROUND
+
+        // Reset drawing
+        pathList = ArrayList<Path>()
+        colorList = ArrayList<Int>()
+        strokeList = ArrayList<Float>()
+
+        currentColor = Color.BLACK
+        currentStroke = 8f
 
         viewTreeObserver.addOnGlobalLayoutListener {
             var parent = parent as View

@@ -1,14 +1,17 @@
 package com.example.readaloudwithstuffedanimal
 
 import android.content.ContentValues
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
+import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.os.PersistableBundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
@@ -91,8 +94,9 @@ class DrawPictureActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener
         doneBtn.setOnClickListener {
             val cv = ContentValues()
 
+            val id = intent.getStringExtra(StoryContentActivity.STORY_ID)
             // file name
-            cv.put(MediaStore.Images.Media.DISPLAY_NAME, "drawing.png")
+            cv.put(MediaStore.Images.Media.DISPLAY_NAME, id + "_cover.png")
 
             // file type
             cv.put(MediaStore.Images.Media.MIME_TYPE, "image/png")
@@ -108,6 +112,11 @@ class DrawPictureActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, imageOutStream)
 
                 imageOutStream?.close()
+
+                val intent = Intent(this, ReadStoryTitleActivity::class.java)
+                intent.putExtra(StoryContentActivity.STORY_ID, id)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
 
             } catch (e: Exception) {
                 Toast.makeText(this, "Error saving image", Toast.LENGTH_SHORT).show()
