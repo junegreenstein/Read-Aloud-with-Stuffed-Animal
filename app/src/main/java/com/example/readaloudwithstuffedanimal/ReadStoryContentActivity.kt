@@ -128,6 +128,8 @@ class ReadStoryContentActivity : AppCompatActivity(), TextToSpeech.OnInitListene
             readText = content[pageNumber - 1]
         }
 
+        read()
+
         // Manage the visibility of the next and previous buttons based on page.
         if (pageNumber == StoryContentActivity.FIRST_PAGE && content.size == 1) {
             btnPrevious.visibility = View.GONE
