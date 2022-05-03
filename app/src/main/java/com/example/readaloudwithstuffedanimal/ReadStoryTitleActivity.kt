@@ -4,9 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
+import android.speech.tts.Voice
+import android.util.Log
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import java.util.*
 
 class ReadStoryTitleActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private var textToSpeech: TextToSpeech? = null
@@ -22,7 +25,7 @@ class ReadStoryTitleActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
         val authorName: TextView = findViewById(R.id.read_author_name)
 
         // Initialize TextToSpeech class variable.
-        textToSpeech = TextToSpeech(this, this)
+        textToSpeech = TextToSpeech(this, this, "com.google.android.tts")
 
         // Get title and author from SharedPreferences.
         val id = intent.getStringExtra(StoryContentActivity.STORY_ID)
@@ -35,9 +38,9 @@ class ReadStoryTitleActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
         authorName.text = author
 
         // Set text to be read.
-        val preStoryTitle = " The title of the story is "
-        val preStoryAuthor = " Written By "
-        readText = preStoryTitle + title + preStoryAuthor + author
+        val preStoryTitle = getString(R.string.read_title)
+        val preStoryAuthor = getString(R.string.read_written_by)
+        readText = preStoryTitle + " " + title + " ... " + preStoryAuthor + " " + author
 
         // Next button listener.
         btnNext.setOnClickListener {
@@ -55,6 +58,18 @@ class ReadStoryTitleActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
     override fun onInit(status: Int) {
         // Check if initialization succeeded.
         if (status == TextToSpeech.SUCCESS) {
+            // Set the voice of TTS
+            textToSpeech!!.setLanguage(Locale.US)
+
+            var selected : Voice? = null
+            for (v in textToSpeech!!.voices) {
+                if (v.name == "en-us-x-iog-local") {
+                    selected = v
+                }
+            }
+
+            textToSpeech!!.setVoice(selected!!)
+
             read()
         }
     }

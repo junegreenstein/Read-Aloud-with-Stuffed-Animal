@@ -11,4 +11,7 @@
     <string name="finish_story">Click on me to finish your story!</string>
     <string name="fab">fab</string>
     <string name="saved_stories">Saved Stories</string>
+    <string name="read_title">The title of the story is</string>
+    <string name="read_written_by">Written by</string>
+    <string name="the_end">The End</string>
 </resources>

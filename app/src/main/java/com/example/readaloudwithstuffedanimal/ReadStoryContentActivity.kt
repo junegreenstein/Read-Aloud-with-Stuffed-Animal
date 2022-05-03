@@ -3,6 +3,7 @@ package com.example.readaloudwithstuffedanimal
 import android.content.Context
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
+import android.speech.tts.Voice
 import android.view.View
 import android.widget.ImageButton
 import android.widget.TextView
@@ -11,6 +12,8 @@ import androidx.core.content.ContextCompat
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ReadStoryContentActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private var textToSpeech: TextToSpeech? = null
@@ -40,7 +43,7 @@ class ReadStoryContentActivity : AppCompatActivity(), TextToSpeech.OnInitListene
         storyContent = findViewById(R.id.text_story_content)
 
         // Initialize TextToSpeech class variable.
-        textToSpeech = TextToSpeech(this, this)
+        textToSpeech = TextToSpeech(this, this, "com.google.android.tts")
 
         // Get story title and content from SharedPreferences.
         val id = intent.getStringExtra(StoryContentActivity.STORY_ID)
@@ -74,6 +77,18 @@ class ReadStoryContentActivity : AppCompatActivity(), TextToSpeech.OnInitListene
     override fun onInit(status: Int) {
         // Check if initialization succeeded.
         if (status == TextToSpeech.SUCCESS) {
+            // Set the voice of TTS
+            textToSpeech!!.setLanguage(Locale.US)
+
+            var selected : Voice? = null
+            for (v in textToSpeech!!.voices) {
+                if (v.name == "en-us-x-iog-local") {
+                    selected = v
+                }
+            }
+
+            textToSpeech!!.setVoice(selected!!)
+
             read()
         }
     }
@@ -97,14 +112,11 @@ class ReadStoryContentActivity : AppCompatActivity(), TextToSpeech.OnInitListene
         // Display the content of each page of the story.
         if (pageNumber == content.size) {
             storyContent.text = content[pageNumber - 1]
-            readText = content[pageNumber - 1] + " The End "
+            readText = content[pageNumber - 1] + "... " + getString(R.string.the_end)
         } else {
             storyContent.text = content[pageNumber - 1]
             readText = content[pageNumber - 1]
         }
-
-        // Let each page be read.
-        textToSpeech = TextToSpeech(this, this)
 
         // Manage the visibility of the next and previous buttons based on page.
         if (pageNumber == StoryContentActivity.FIRST_PAGE && content.size == 1) {
