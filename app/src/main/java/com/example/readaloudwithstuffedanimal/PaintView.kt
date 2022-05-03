@@ -68,14 +68,23 @@ class PaintView : View {
         // Handles touching and dragging to draw, adds it to paths
         when(event.action) {
             MotionEvent.ACTION_DOWN -> {
+                path = Path()
+
+                pathList.add(path)
+                colorList.add(currentColor)
+                strokeList.add(currentStroke)
+
                 path.moveTo(x, y)
+                invalidate()
                 return true
             }
             MotionEvent.ACTION_MOVE -> {
                 path.lineTo(x, y)
-                pathList.add(path)
-                colorList.add(currentColor)
-                strokeList.add(currentStroke)
+                invalidate()
+            }
+            MotionEvent.ACTION_UP -> {
+                path.lineTo(x, y)
+                invalidate()
             }
             else -> return false
         }
@@ -95,7 +104,6 @@ class PaintView : View {
             paintBrush.strokeWidth = strokeList[i]
             bitmapCanvas.drawPath(pathList[i], paintBrush)
         }
-
         canvas.drawBitmap(bitmap, 0f, 0f, bitmapPaint)
         canvas.restore()
     }

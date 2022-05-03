@@ -47,7 +47,8 @@ class DrawPictureActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener
         val whiteBtn = findViewById<ImageButton>(R.id.whiteColor)
 
         blackBtn.setOnClickListener {
-            setCurrentColor(R.color.black)
+            paintBrush.color = ContextCompat.getColor(applicationContext, R.color.black)
+            setCurrentColor(paintBrush.color)
         }
         redBtn.setOnClickListener {
             paintBrush.color = ContextCompat.getColor(applicationContext, R.color.red)
