@@ -14,4 +14,5 @@
     <string name="read_title">The title of the story is</string>
     <string name="read_written_by">Written by</string>
     <string name="the_end">The End</string>
+    <string name="done">Done</string>
 </resources>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:background="@color/grey">
+
+        <LinearLayout
+            android:id="@+id/colorPickerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <ImageButton
+                android:id="@+id/blackColor"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/color_black" />
+
+            <ImageButton
+                android:id="@+id/redColor"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/color_red" />
+
+            <ImageButton
+                android:id="@+id/orangeColor"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/color_orange" />
+
+            <ImageButton
+                android:id="@+id/yellowColor"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/color_yellow" />
+
+            <ImageButton
+                android:id="@+id/greenColor"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/color_green" />
+
+            <ImageButton
+                android:id="@+id/blueLightColor"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/color_blue_light" />
+
+            <ImageButton
+                android:id="@+id/blueDarkColor"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/color_blue_dark" />
+
+            <ImageButton
+                android:id="@+id/purpleColor"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/color_purple" />
+
+            <ImageButton
+                android:id="@+id/whiteColor"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/color_white" />
+
+        </LinearLayout>
+
+        <SeekBar
+            android:id="@+id/sizePicker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/colorPickerLayout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginVertical="5dp"
+            android:min="40"
+            android:max="700"
+            android:progress="70"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/drawArea"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar">
+
+        <include layout="@layout/draw_view" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/doneBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@id/drawArea"
+        android:layout_alignBottom="@id/drawArea"
+        android:gravity="center"
+        android:text="@string/done" />
+
+</RelativeLayout>
