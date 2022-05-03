@@ -49,6 +49,8 @@ class ReadStoryTitleActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
             intent.putExtra(StoryTitleActivity.STORY_TITLE, title)
             intent.putExtra(StoryContentActivity.STORY_ID, id)
 
+            textToSpeech!!.stop()
+
             // Launch next Activity.
             startActivity(intent)
         }
