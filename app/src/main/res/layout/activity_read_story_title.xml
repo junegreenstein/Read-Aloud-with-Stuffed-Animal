@@ -59,10 +59,10 @@
         android:id="@+id/btn_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:padding="16dp"
+        android:layout_alignParentBottom="true"
         android:background="?selectableItemBackgroundBorderless"
+        android:padding="16dp"
         android:src="@drawable/ic_baseline_arrow_forward_24"
         app:tint="@color/black"
         tools:ignore="ContentDescription" />
