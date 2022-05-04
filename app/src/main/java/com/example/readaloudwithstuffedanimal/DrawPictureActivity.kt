@@ -3,16 +3,11 @@ package com.example.readaloudwithstuffedanimal
 import android.content.ContentValues
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
-import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
-import android.os.PersistableBundle
 import android.provider.MediaStore
-import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.SeekBar
@@ -22,7 +17,6 @@ import androidx.core.content.ContextCompat
 import com.example.readaloudwithstuffedanimal.PaintView.Companion.bitmap
 import com.example.readaloudwithstuffedanimal.PaintView.Companion.currentColor
 import com.example.readaloudwithstuffedanimal.PaintView.Companion.currentStroke
-import java.io.OutputStream
 
 class DrawPictureActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener {
 
@@ -30,7 +24,6 @@ class DrawPictureActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener
         var path = Path()
         var paintBrush = Paint()
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
