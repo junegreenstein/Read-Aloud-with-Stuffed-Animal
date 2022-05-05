@@ -17,6 +17,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import java.io.File
 import java.io.FileInputStream
 import java.io.InputStream
@@ -29,6 +30,12 @@ class ReadStoryTitleActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_read_story_title)
+
+        // Disable toolbar.
+        supportActionBar?.hide()
+
+        // Set status bar color.
+        window.statusBarColor = ContextCompat.getColor(this, R.color.black)
 
         // Activity layout views.
         val btnNext: ImageButton = findViewById(R.id.btn_next)

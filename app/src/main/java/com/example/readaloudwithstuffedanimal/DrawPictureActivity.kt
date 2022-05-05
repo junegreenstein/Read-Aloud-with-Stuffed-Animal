@@ -31,10 +31,13 @@ class DrawPictureActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener
         var paintBrush = Paint()
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_paint_layout)
+
+        // Set status bar color.
+        window.statusBarColor = ContextCompat.getColor(this, R.color.black)
 
         supportActionBar?.hide()
 
