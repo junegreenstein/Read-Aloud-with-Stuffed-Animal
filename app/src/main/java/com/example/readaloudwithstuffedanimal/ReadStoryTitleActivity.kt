@@ -1,17 +1,12 @@
 package com.example.readaloudwithstuffedanimal
 
-import android.content.ContentUris
-import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
-import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
-import android.provider.MediaStore
 import android.speech.tts.TextToSpeech
 import android.speech.tts.Voice
-import android.util.Log
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
@@ -20,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import java.io.File
 import java.io.FileInputStream
-import java.io.InputStream
 import java.util.*
 
 class ReadStoryTitleActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
@@ -52,8 +46,9 @@ class ReadStoryTitleActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
         val title = sp.getString(StoryTitleActivity.STORY_TITLE, null)
         val author = sp.getString(StoryTitleActivity.AUTHOR_NAME, null)
 
-        // Get cover art
-        val path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).absolutePath
+        // Get cover art.
+        val path =
+            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).absolutePath
         val myPath = path + "/" + id + "_cover.png"
         val coverFile = File(myPath)
 
@@ -61,8 +56,7 @@ class ReadStoryTitleActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
             val imageInStream = FileInputStream(coverFile)
             val bitmap = BitmapFactory.decodeStream(imageInStream)
             coverArt.setImageBitmap(bitmap)
-        }
-        else {
+        } else {
             Toast.makeText(this, "Cover not found", Toast.LENGTH_SHORT).show()
         }
 
@@ -73,7 +67,7 @@ class ReadStoryTitleActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
         // Set text to be read.
         val preStoryTitle = getString(R.string.read_title)
         val preStoryAuthor = getString(R.string.read_written_by)
-        readText = preStoryTitle + " " + title + " ... " + preStoryAuthor + " " + author
+        readText = "$preStoryTitle $title ... $preStoryAuthor $author"
 
         // Next button listener.
         btnNext.setOnClickListener {
@@ -84,7 +78,7 @@ class ReadStoryTitleActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
 
             textToSpeech!!.stop()
 
-            // Launch next Activity.
+            // Launch next activity.
             startActivity(intent)
         }
     }
@@ -93,25 +87,24 @@ class ReadStoryTitleActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
     override fun onInit(status: Int) {
         // Check if initialization succeeded.
         if (status == TextToSpeech.SUCCESS) {
-            // Set the voice of TTS
-            textToSpeech!!.setLanguage(Locale.US)
+            // Set the voice of TTS.
+            textToSpeech!!.language = Locale.US
 
-            var selected : Voice? = null
+            var selected: Voice? = null
             for (v in textToSpeech!!.voices) {
                 if (v.name == "en-us-x-iog-local") {
                     selected = v
                 }
             }
 
-            textToSpeech!!.setVoice(selected!!)
-
+            textToSpeech!!.voice = selected!!
             read()
         }
     }
 
     // Read out the text.
     private fun read() {
-        textToSpeech!!.speak(readText, TextToSpeech.QUEUE_FLUSH, null, "UNIQUE_UTTERANCE_ID")
+        textToSpeech!!.speak(readText, TextToSpeech.QUEUE_FLUSH, null, "")
     }
 
     // Stop and shutdown TextToSpeech engine when activity is destroyed.

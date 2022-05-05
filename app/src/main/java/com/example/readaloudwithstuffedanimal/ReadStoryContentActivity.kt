@@ -15,7 +15,6 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
 import java.util.*
-import kotlin.collections.ArrayList
 
 class ReadStoryContentActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private var textToSpeech: TextToSpeech? = null
@@ -41,7 +40,7 @@ class ReadStoryContentActivity : AppCompatActivity(), TextToSpeech.OnInitListene
         // Activity layout views.
         btnNext = findViewById(R.id.btn_next)
         btnPrevious = findViewById(R.id.btn_previous)
-        btnTheEnd = findViewById(R.id.btn_the_end) as Button
+        btnTheEnd = findViewById(R.id.btn_the_end)
         textPageNumber = findViewById(R.id.text_page_number)
         val storyTitle: TextView = findViewById(R.id.text_story_title)
         storyContent = findViewById(R.id.text_story_content)
@@ -88,17 +87,16 @@ class ReadStoryContentActivity : AppCompatActivity(), TextToSpeech.OnInitListene
         // Check if initialization succeeded.
         if (status == TextToSpeech.SUCCESS) {
             // Set the voice of TTS
-            textToSpeech!!.setLanguage(Locale.US)
+            textToSpeech!!.language = Locale.US
 
-            var selected : Voice? = null
+            var selected: Voice? = null
             for (v in textToSpeech!!.voices) {
                 if (v.name == "en-us-x-iog-local") {
                     selected = v
                 }
             }
 
-            textToSpeech!!.setVoice(selected!!)
-
+            textToSpeech!!.voice = selected!!
             read()
         }
     }

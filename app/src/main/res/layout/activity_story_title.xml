@@ -16,16 +16,16 @@
             android:id="@+id/edit_story_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="casual"
+            android:autofillHints="no"
             android:background="@color/cardview_light_background"
-            android:maxLength="40"
+            android:fontFamily="casual"
             android:gravity="top|center"
             android:hint="@string/story_title"
+            android:inputType="textCapWords|textMultiLine"
+            android:maxLength="40"
             android:textColor="@color/black"
-            android:textSize="36sp"
             android:textCursorDrawable="@drawable/text_cursor"
-            android:autofillHints="no"
-            android:inputType="textCapWords|textMultiLine" />
+            android:textSize="36sp" />
 
         <Space
             android:layout_width="match_parent"
@@ -35,15 +35,15 @@
             android:id="@+id/edit_author_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/cardview_light_background"
             android:layout_gravity="center"
+            android:autofillHints="no"
+            android:background="@color/cardview_light_background"
             android:gravity="center"
             android:hint="@string/author_name"
+            android:inputType="textCapWords|textMultiLine"
             android:textColor="@color/black"
-            android:textSize="18sp"
             android:textCursorDrawable="@drawable/text_cursor"
-            android:autofillHints="no"
-            android:inputType="textCapWords|textMultiLine" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -51,10 +51,10 @@
         android:id="@+id/btn_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:padding="16dp"
+        android:layout_alignParentBottom="true"
         android:background="?selectableItemBackgroundBorderless"
+        android:padding="16dp"
         android:src="@drawable/ic_baseline_arrow_forward_24"
         app:tint="@color/black"
         tools:ignore="ContentDescription" />

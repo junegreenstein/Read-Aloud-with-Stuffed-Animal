@@ -2,7 +2,6 @@ package com.example.readaloudwithstuffedanimal
 
 import android.content.Context
 import android.graphics.*
-import android.icu.util.Measure
 import android.util.AttributeSet
 import android.util.Log
 import android.view.MotionEvent
@@ -13,7 +12,7 @@ import com.example.readaloudwithstuffedanimal.DrawPictureActivity.Companion.path
 
 class PaintView : View {
 
-    var params : ViewGroup.LayoutParams? = null
+    private var params: ViewGroup.LayoutParams? = null
 
     companion object {
         var pathList = ArrayList<Path>()
@@ -23,11 +22,11 @@ class PaintView : View {
         var currentColor = Color.BLACK
         var currentStroke = 8f
 
-        lateinit var bitmap : Bitmap
-        lateinit var bitmapCanvas : Canvas
+        lateinit var bitmap: Bitmap
+        lateinit var bitmapCanvas: Canvas
     }
 
-    val bitmapPaint = Paint(Paint.DITHER_FLAG)
+    private val bitmapPaint = Paint(Paint.DITHER_FLAG)
 
 
     constructor(context: Context) : this(context, null) {
@@ -38,12 +37,19 @@ class PaintView : View {
         init()
     }
 
-    constructor (context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+    constructor (context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    ) {
         init()
     }
 
     private fun init() {
-        params = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        params = ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
 
         paintBrush.isAntiAlias = true
         paintBrush.color = currentColor
@@ -52,9 +58,9 @@ class PaintView : View {
         paintBrush.strokeCap = Paint.Cap.ROUND
 
         // Reset drawing
-        pathList = ArrayList<Path>()
-        colorList = ArrayList<Int>()
-        strokeList = ArrayList<Float>()
+        pathList = ArrayList()
+        colorList = ArrayList()
+        strokeList = ArrayList()
 
         currentColor = Color.BLACK
         currentStroke = 8f
@@ -74,7 +80,7 @@ class PaintView : View {
         var y = event.y
 
         // Handles touching and dragging to draw, adds it to paths
-        when(event.action) {
+        when (event.action) {
             MotionEvent.ACTION_DOWN -> {
                 path = Path()
 
@@ -108,7 +114,7 @@ class PaintView : View {
 
         // Draw paths
         for (i in pathList.indices) {
-            paintBrush.setColor(colorList[i])
+            paintBrush.color = colorList[i]
             paintBrush.strokeWidth = strokeList[i]
             bitmapCanvas.drawPath(pathList[i], paintBrush)
         }

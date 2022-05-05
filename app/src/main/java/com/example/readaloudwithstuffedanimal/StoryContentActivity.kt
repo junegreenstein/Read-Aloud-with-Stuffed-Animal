@@ -125,7 +125,7 @@ class StoryContentActivity : AppCompatActivity() {
             var storyID = "0"
 
             // Increment story id.
-            if (lines.size - 1 != 0 || !lines[0].equals("")) {
+            if (lines.size - 1 != 0 || lines[0] != "") {
 
                 storyID = (lines[lines.size - 1].toInt() + 1).toString()
 
