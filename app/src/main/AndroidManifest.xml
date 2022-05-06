@@ -8,6 +8,7 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.ReadAloudWithStuffedAnimal">
+
         <activity
             android:name=".SelectStoryActivity"
             android:exported="true">

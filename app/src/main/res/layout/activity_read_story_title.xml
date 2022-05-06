@@ -31,7 +31,7 @@
             android:id="@+id/coverArtImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/read_story_title"
+            android:layout_centerInParent="true"
             android:adjustViewBounds="true"
             android:maxHeight="400dp" />
 

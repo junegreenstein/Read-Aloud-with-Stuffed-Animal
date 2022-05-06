@@ -1,13 +1,18 @@
 package com.example.readaloudwithstuffedanimal
 
+import android.Manifest
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.os.Environment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,6 +26,29 @@ class SelectStoryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_story)
+
+        // Check user permissions.
+        val permission =
+            ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                this,
+                ReadStoryTitleActivity.PERMISSIONS,
+                ReadStoryTitleActivity.REQUEST_CODE
+            )
+        }
+
+        // Check if the app is freshly installed.
+        val storyIDs = File(this.filesDir, "storyIDs")
+        val file = File(storyIDs, "storyIDs.txt")
+
+        // If so, remove old cover images.
+        if (!file.exists()) {
+            val images =
+                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+            // TODO: Delete old cover images.
+        }
 
         // Disable toolbar.
         supportActionBar?.hide()
