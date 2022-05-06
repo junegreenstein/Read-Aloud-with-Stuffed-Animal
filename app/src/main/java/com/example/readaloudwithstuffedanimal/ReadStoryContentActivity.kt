@@ -75,7 +75,9 @@ class ReadStoryContentActivity : AppCompatActivity(), TextToSpeech.OnInitListene
             updatePage(false)
         }
 
+        // End button listener
         btnTheEnd.setOnClickListener {
+            // Go to Select Story screen
             val intent = Intent(this, SelectStoryActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
