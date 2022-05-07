@@ -50,7 +50,7 @@ class ReadStoryTitleActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
 
         // Get cover art.
         val path =
-            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).absolutePath
+            getExternalFilesDir(null)!!.absolutePath
         val myPath = path + "/" + id + "_cover.png"
 
         val coverFile = File(myPath)

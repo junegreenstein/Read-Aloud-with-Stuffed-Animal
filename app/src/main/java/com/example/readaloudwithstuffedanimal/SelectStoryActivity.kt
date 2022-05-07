@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.os.Environment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,13 +40,6 @@ class SelectStoryActivity : AppCompatActivity() {
         // Check if the app is freshly installed.
         val storyIDs = File(this.filesDir, "storyIDs")
         val file = File(storyIDs, "storyIDs.txt")
-
-        // If so, remove old cover images.
-        if (!file.exists()) {
-            val images =
-                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
-            // TODO: Delete old cover images.
-        }
 
         // Disable toolbar.
         supportActionBar?.hide()

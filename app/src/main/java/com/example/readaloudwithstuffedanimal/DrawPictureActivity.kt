@@ -17,6 +17,8 @@ import androidx.core.content.ContextCompat
 import com.example.readaloudwithstuffedanimal.PaintView.Companion.bitmap
 import com.example.readaloudwithstuffedanimal.PaintView.Companion.currentColor
 import com.example.readaloudwithstuffedanimal.PaintView.Companion.currentStroke
+import java.io.File
+import java.io.FileOutputStream
 
 class DrawPictureActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener {
 
@@ -89,26 +91,15 @@ class DrawPictureActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener
 
         val doneBtn = findViewById<Button>(R.id.doneBtn)
         doneBtn.setOnClickListener {
-            val cv = ContentValues()
-
             val id = intent.getStringExtra(StoryContentActivity.STORY_ID)
-            // file name
-            cv.put(MediaStore.Images.Media.DISPLAY_NAME, id + "_cover.png")
-
-            // file type
-            cv.put(MediaStore.Images.Media.MIME_TYPE, "image/png")
-
-            // file location
-            cv.put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_PICTURES)
-
-            val uri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, cv)
 
             try {
-                val imageOutStream = contentResolver.openOutputStream(uri!!)
-
+                val file = File(getExternalFilesDir(null)!!.absolutePath, id + "_cover.png")
+                val imageOutStream = FileOutputStream(file)
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, imageOutStream)
 
-                imageOutStream?.close()
+                imageOutStream.flush()
+                imageOutStream.close()
 
                 val intent = Intent(this, ReadStoryTitleActivity::class.java)
                 intent.putExtra(StoryContentActivity.STORY_ID, id)
