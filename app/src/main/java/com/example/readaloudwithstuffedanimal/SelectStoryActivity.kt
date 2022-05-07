@@ -25,22 +25,6 @@ class SelectStoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_story)
 
-        // Check user permissions.
-        val permission =
-            ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-
-        if (permission != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(
-                this,
-                ReadStoryTitleActivity.PERMISSIONS,
-                ReadStoryTitleActivity.REQUEST_CODE
-            )
-        }
-
-        // Check if the app is freshly installed.
-        val storyIDs = File(this.filesDir, "storyIDs")
-        val file = File(storyIDs, "storyIDs.txt")
-
         // Disable toolbar.
         supportActionBar?.hide()
 

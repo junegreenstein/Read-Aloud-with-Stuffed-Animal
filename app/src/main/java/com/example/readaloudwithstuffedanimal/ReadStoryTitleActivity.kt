@@ -125,11 +125,4 @@ class ReadStoryTitleActivity : AppCompatActivity(), TextToSpeech.OnInitListener 
         startActivity(intent)
     }
 
-    companion object {
-        val PERMISSIONS = arrayOf(
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
-        )
-        const val REQUEST_CODE = 1
-    }
 }
