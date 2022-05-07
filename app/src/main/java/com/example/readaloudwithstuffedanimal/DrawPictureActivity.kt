@@ -1,13 +1,10 @@
 package com.example.readaloudwithstuffedanimal
 
-import android.content.ContentValues
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Paint
 import android.graphics.Path
 import android.os.Bundle
-import android.os.Environment
-import android.provider.MediaStore
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.SeekBar

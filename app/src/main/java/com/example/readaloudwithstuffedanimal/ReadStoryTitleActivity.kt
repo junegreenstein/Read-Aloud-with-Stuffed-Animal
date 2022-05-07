@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.os.Environment
 import android.speech.tts.TextToSpeech
 import android.speech.tts.Voice
 import android.widget.ImageButton
